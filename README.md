@@ -8,7 +8,7 @@
 
 _Проект разработан в рамках хакатона ПРОСТО x СБЕР._ 
 
-![image](https://github.com/user-attachments/assets/96c71d54-23d7-421e-bbdd-ccbd38994c41)
+![image](https://github.com/user-attachments/assets/871f2f10-3408-4e97-b936-7e3d0f752acf)
 
 
 ## Требования
