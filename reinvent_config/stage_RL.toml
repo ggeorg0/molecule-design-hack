@@ -44,13 +44,17 @@ type = "geometric_mean"
 name="MelaninBinding"
 weight=1
 
-
 [[stage.scoring.component]]
 [stage.scoring.component.Irritation]
 [[stage.scoring.component.Irritation.endpoint]]
 name="Irritation"
 weight=1
 
+[[stage.scoring.component]]
+[stage.scoring.component.CornealPermeability]
+[[stage.scoring.component.CornealPermeability.endpoint]]
+name="CornealPermeability"
+weight=1
 
 [[stage.scoring.component]]
 [stage.scoring.component.QED]
