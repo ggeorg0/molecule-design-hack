@@ -1,3 +1,7 @@
 rdkit
 pandas
 numpy
+scikit-learn
+joblib
+optuna
+optuna-integration[xgboost]
