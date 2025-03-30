@@ -1,0 +1,72 @@
+run_type = "staged_learning"
+device = "cuda:0"
+tb_logdir = "tb_stage2"
+json_out_config = "_stage2.json"
+
+[parameters]
+use_checkpoint = false
+summary_csv_prefix = "rl_stage2"
+agent_file = "rl_direct.chkpt"
+prior_file = "REINVENT4/priors/reinvent.prior"
+
+batch_size = 20
+
+[learning_strategy]
+
+type = "dap"
+sigma = 128
+rate = 0.0005
+
+[[stage]]
+max_score = 1.0
+chkpt_file = 'rl_direct.chkpt'
+termination = "simple"
+max_steps = 10
+
+[stage.scoring]
+type = "geometric_mean"
+
+[[stage.scoring.component]]
+[stage.scoring.component.MelaninBinding]
+[[stage.scoring.component.MelaninBinding.endpoint]]
+name="MelaninBinding"
+weight=0.1
+
+[[stage.scoring.component]]
+[stage.scoring.component.Irritation]
+[[stage.scoring.component.Irritation.endpoint]]
+name="Irritation"
+weight=0.1
+
+[[stage.scoring.component]]
+[stage.scoring.component.CornealPermeabilityNorm]
+[[stage.scoring.component.CornealPermeabilityNorm.endpoint]]
+name="CornealPermeabilityNorm"
+weight=0.1
+
+[[stage.scoring.component]]
+[stage.scoring.component.COX2Binding]
+[[stage.scoring.component.COX2Binding.endpoint]]
+name="COX2Binding"
+weight=1
+
+[[stage.scoring.component]]
+[stage.scoring.component.QED]
+[[stage.scoring.component.QED.endpoint]]
+name = "QED"
+weight = 0.1
+
+
+[[stage.scoring.component]]
+[stage.scoring.component.SAScore]
+[[stage.scoring.component.SAScore.endpoint]]
+name = "SAScore"
+weight = 0.1
+
+
+[[stage.scoring.component]]
+[stage.scoring.component.SAScore]
+[[stage.scoring.component.SAScore.endpoint]]
+name = "SAScore"
+weight = 0.1
+
