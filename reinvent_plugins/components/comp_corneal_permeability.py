@@ -31,6 +31,8 @@ class CornealPermeability:
         self.model = extratreesregressor
         self.scaler = minmaxscaler
         self.smiles_type = "rdkit_smiles"
+        self.LOWLogperm = 4
+        self.MAXLogperm = 6
 
     @normalize_smiles
     def __call__(self, smiles: list[str]) -> ComponentResults:
@@ -38,6 +40,14 @@ class CornealPermeability:
         descriptors_df = descriptors_df[TRAINED_PARAMS].to_numpy()
         scaled_features = self.scaler.transform(descriptors_df)
         y_pred = self.model.predict(scaled_features)
-        return ComponentResults([y_pred])
+
+        # normilize values between acceptable values (LOW and MAX)
+        score = (y_pred - self.LOWLogperm) / (self.MAXLogperm - self.LOWLogperm)
+
+        # # truncate valuse from LOW and MAX
+        # score[score < 0] = 0
+        # score[score > 1] = 0
+
+        return ComponentResults([score])
 
 
