@@ -8,6 +8,9 @@
 
 _Проект разработан в рамках хакатона ПРОСТО x СБЕР._ 
 
+![image](https://github.com/user-attachments/assets/96c71d54-23d7-421e-bbdd-ccbd38994c41)
+
+
 ## Требования
 - Python 3.10+
 - ОС: Linux, macOS, Windows
