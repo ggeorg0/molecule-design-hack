@@ -1,21 +1,18 @@
-"""Use RDKit's filter catalogs to filter for unwanted structures"""
 from __future__ import annotations
+
 __all__ = ["Irritation"]
 
 import logging
 
 import joblib
 
-from numpy.typing import NDArray
-
-logger = logging.getLogger("reinvent")
-
-from reinvent_plugins.normalize import normalize_smiles
-from reinvent_plugins.components.add_tag import add_tag
-from reinvent_plugins.components.component_results import ComponentResults
-
 from config import MODELS_SAVE_PATH
 from custom_scoring.helpers import extract_decriptors
+from reinvent_plugins.components.add_tag import add_tag
+from reinvent_plugins.components.component_results import ComponentResults
+from reinvent_plugins.normalize import normalize_smiles
+
+logger = logging.getLogger("reinvent")
 
 MODEL_NAME = "random_forest_model.pkl"
 
@@ -32,7 +29,7 @@ class Irritation:
         self.smiles_type = "rdkit_smiles"
 
     @normalize_smiles
-    def __call__(self, smiles: list[str]) -> NDArray:
+    def __call__(self, smiles: list[str]) -> ComponentResults:
         descriptors_df = extract_decriptors(smiles)
         descriptors_df = descriptors_df[TRAINED_PARAMS]
 
