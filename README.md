@@ -6,9 +6,9 @@
 3. Лучшие молекулы отбираются по критериям SAscore, QED
 
 
-_Проект разработан в рамках хакатона ПРОСТО x СБЕР_ 
+_Проект разработан в рамках хакатона ПРОСТО x СБЕР x ИТМО_
 
-![image](https://github.com/user-attachments/assets/871f2f10-3408-4e97-b936-7e3d0f752acf)
+![image](https://github.com/user-attachments/assets/9385af28-96dc-4fa2-85a3-6605394ee143)
 
 ### Об обучении моделей 
 Для подсчета reward-а для RL-модели, мы используем классический Machine Learning для предсказания свойств молекул.
@@ -29,7 +29,7 @@ _Проект разработан в рамках хакатона ПРОСТО
 - Conda
 
 
-## Установка
+## Установка (Linux)
 
 Клонируйте этот репозиторий и спуститесь в его директорию
 ```bash
@@ -40,7 +40,6 @@ cd molecule-design-hack
 Клонируйте репозиторий [REINVENT 4](https://github.com/MolecularAI/REINVENT4.git)
 ```bash
 git clone https://github.com/MolecularAI/REINVENT4.git
-git clone https://github.com/dockstring/dockstring.git
 ```
 
 Создайте окружение в [Conda](https://docs.conda.io/projects/conda/en/latest/index.html)
@@ -58,14 +57,17 @@ pip install -r requirements.txt
 ```bash
 pip install -r REINVENT4/requirements-linux-64.lock
 ```
-_Опционально: используйте _requirements-macOS.lock_ для ОС MacOSX._
-
 Последняя версия REINVENT 4 требует установки утилиты iSIM, которая не включена по-умолчанию в требованиях для установки REINVENT 4. Утилиту необходимо поставить с помощью следующих команд:
 
 ```bash
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 conda install isim
+```
+
+Наконец, можно установить сам пакет `reinvent` из локального репозитория:
+```bash
+pip install ./REINVENT4
 ```
 
 ## Семплинг молекул на основе обученых моделей
