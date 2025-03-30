@@ -1,0 +1,54 @@
+run_type = "staged_learning"
+device = "cuda:0"
+tb_logdir = "tb_stage1"
+json_out_config = "_stage1.json"
+
+[parameters]
+use_checkpoint = false
+summary_csv_prefix = "rl_stage1"
+agent_file = "REINVENT4/priors/reinvent.prior"
+prior_file = "REINVENT4/priors/reinvent.prior"
+
+batch_size = 50
+
+[learning_strategy]
+
+type = "dap"
+sigma = 128
+rate = 0.0005
+
+[[stage]]
+max_score = 1.0
+chkpt_file = 'rl_direct.chkpt'
+termination = "simple"
+max_steps = 100
+
+[stage.scoring]
+type = "geometric_mean"
+
+# [[stage.scoring.component]]
+# [[stage.scoring.component.DockStream.endpoint]]
+# name = "Docking into 2XCH grid"
+# weight = 1
+# params.configuration_path = "dockstream_rl_direct_uncs.json"
+# params.docker_script_path = "[PATH_TO_DOCKSTREAM]/docker.py"
+# params.docker_python_path =  "[PATH_TO_DOCKSTREAM_ENV]/python"
+# transform.type = "reverse_sigmoid"
+# transform.high = -7
+# transform.low = -13.5
+# transform.k = 0.2
+
+[[stage.scoring.component]]
+[stage.scoring.component.MelaninBinding]
+[[stage.scoring.component.MelaninBinding.endpoint]]
+name="MelaninBinding"
+weight=1
+
+[[stage.scoring.component]]
+[stage.scoring.component.QED]
+[[stage.scoring.component.QED.endpoint]]
+name = "QED"
+weight = 1
+
+
+
